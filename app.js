@@ -1,68 +1,68 @@
 const seededIntents = [
   {
     id: 'lt_001',
-    category: 'founder',
-    public: 'Technical builder exploring a company in computational biology',
-    region: 'Boston/Cambridge',
-    wants: ['cofounder', 'research commercialization'],
-    offers: ['ML', 'bioinformatics', 'rapid prototyping'],
-    private: 'Would leave a prestigious lab for the right cofounder; wants someone unusually ambitious and fast-moving.'
+    category: 'housing',
+    public: 'Short-term furnished housing available in a major city',
+    region: 'Chicago',
+    wants: ['reliable tenant', 'flexible dates'],
+    offers: ['furnished apartment', 'six-week availability'],
+    private: 'The owner is traveling unexpectedly and prefers not to post the exact vacant dates publicly.'
   },
   {
     id: 'lt_002',
-    category: 'research',
-    public: 'Wet-lab scientist interested in translating aging biology',
-    region: 'Bay Area',
-    wants: ['computational collaborator', 'startup path'],
-    offers: ['mouse models', 'assay design', 'aging biology'],
-    private: 'Frustrated with academic pace and quietly open to joining a venture-backed startup.'
+    category: 'services',
+    public: 'Experienced local helper available for small weekend jobs',
+    region: 'Seattle',
+    wants: ['one-off projects', 'clear scope'],
+    offers: ['moving help', 'assembly', 'local errands'],
+    private: 'Available selectively and would rather review requests through an agent than publish a phone number.'
   },
   {
     id: 'lt_003',
-    category: 'capital',
-    public: 'Angel looking for unusual pre-seed technical founders',
-    region: 'United States',
-    wants: ['deep-tech founders', 'contrarian theses'],
-    offers: ['capital', 'introductions', 'company building'],
-    private: 'Especially interested in founders too early for a formal round and does not want public dealflow spam.'
+    category: 'learning',
+    public: 'Language tutor open to a recurring evening exchange',
+    region: 'Remote',
+    wants: ['consistent learner', 'weekly schedule'],
+    offers: ['Spanish tutoring', 'conversation practice'],
+    private: 'Prefers a learner with a specific schedule and does not want to manage a public tutoring profile.'
   },
   {
     id: 'lt_004',
-    category: 'work',
-    public: 'Senior engineer open to a mission-driven side project',
-    region: 'Remote',
-    wants: ['high-agency team', 'equity-heavy role'],
-    offers: ['full-stack', 'agents', 'infrastructure'],
-    private: 'Would consider quitting current role only after building trust through a short collaboration.'
+    category: 'events',
+    public: 'Small event vendor with last-minute weekend availability',
+    region: 'Austin',
+    wants: ['private event', 'under 80 guests'],
+    offers: ['food service', 'setup', 'staffing'],
+    private: 'A cancellation opened a date that is not being advertised publicly because the vendor wants one good-fit booking.'
   },
   {
     id: 'lt_005',
-    category: 'health',
-    public: 'Operator seeking better preventive health tools for employees',
-    region: 'Nevada',
-    wants: ['pilot', 'measurable outcomes'],
-    offers: ['distribution', 'benefit budget', 'population access'],
-    private: 'Can approve a small pilot quickly but cannot publicly signal vendor dissatisfaction.'
+    category: 'commerce',
+    public: 'Collector considering selling a high-end camera kit',
+    region: 'United States',
+    wants: ['serious buyer', 'simple transaction'],
+    offers: ['camera body', 'two lenses', 'accessories'],
+    private: 'The owner is only willing to sell above a private reserve and does not want to create a public listing unless there is real demand.'
   },
   {
     id: 'lt_006',
-    category: 'creative',
-    public: 'Producer looking for technically ambitious interactive media',
-    region: 'Los Angeles',
-    wants: ['AI collaborator', 'experimental demos'],
-    offers: ['production', 'distribution', 'creative direction'],
-    private: 'Wants weird prototypes, not polished agency pitches.'
+    category: 'community',
+    public: 'Neighborhood group looking for occasional volunteer help',
+    region: 'Portland',
+    wants: ['weekend volunteers', 'reliable attendance'],
+    offers: ['community projects', 'local connections'],
+    private: 'The group wants people matched to specific tasks rather than collecting names through a public signup sheet.'
   }
 ];
 
 const toolDescriptions = [
-  ['get_market_snapshot', 'Read a coarse public view of the network without exposing private goals or contact details.'],
-  ['submit_latent_intent', 'Save a user goal privately in local storage so an agent can work on it without posting the full thing publicly.'],
-  ['find_counterparties', 'Return strong matches as opaque IDs with short rationales, while withholding identity and raw private text.'],
-  ['request_intro', 'Create a consent-gated intro request that shares only the note the user explicitly approves.']
+  ['get_market_snapshot', 'Read a coarse public view of the network without exposing private requests or contact details.'],
+  ['submit_latent_intent', 'Save a private request in local storage so an agent can work on it without turning it into a public listing.'],
+  ['find_counterparties', 'Return strong matches as opaque IDs with short rationales while withholding identity and raw private text.'],
+  ['request_intro', 'Create a consent-gated introduction request that shares only the note the user explicitly approves.']
 ];
 
-const AGENT_PROMPT = 'Use the WebMCP tools on this Latent page. First help me phrase my real goal privately. Then store it with submit_latent_intent, search for strong counterparties with find_counterparties, explain the best matches, and only request an introduction after I choose one. Do not expose my private intent publicly.';
+const AGENT_PROMPT = 'Use the WebMCP tools on this Latent page. I need a furnished two-bedroom place for about six weeks. I care about flexible dates and do not want to publish my exact budget or travel schedule. Save that request privately, find relevant matches, explain the best one, and do not request an introduction until I choose.';
 
 const state = {
   localIntents: JSON.parse(localStorage.getItem('latent_intents') || '[]'),
@@ -88,17 +88,11 @@ function renderSignals() {
   const grid = document.getElementById('signal-grid');
   if (!grid) return;
 
-  const publicSignals = seededIntents.map(({ category, public: publicText, region }) => ({
-    category,
-    publicText,
-    region
-  }));
-
-  grid.innerHTML = publicSignals.map(item => `
+  grid.innerHTML = seededIntents.map(item => `
     <article class="signal-row">
       <div class="signal-tag">${escapeHTML(item.category)}</div>
       <div>
-        <div class="signal-title">${escapeHTML(item.publicText)}</div>
+        <div class="signal-title">${escapeHTML(item.public)}</div>
         <div class="signal-meta">${escapeHTML(item.region)} · richer constraints available only to agents</div>
       </div>
     </article>
@@ -120,9 +114,7 @@ function renderTools() {
 
 function renderCounts() {
   const countEl = document.getElementById('intent-count');
-  if (countEl) {
-    countEl.textContent = String(seededIntents.length + state.localIntents.length);
-  }
+  if (countEl) countEl.textContent = String(seededIntents.length + state.localIntents.length);
 }
 
 function renderPrompt() {
@@ -177,7 +169,7 @@ function registerWebMCP() {
   mc.registerTool({
     name: 'get_market_snapshot',
     title: 'Get latent market snapshot',
-    description: 'Read-only tool. Returns coarse counts and category-level information without exposing private intent text or contact details.',
+    description: 'Read-only. Returns coarse categories and counts without exposing private request text, identities, or contact details.',
     inputSchema: { type: 'object', properties: {} },
     annotations: { readOnlyHint: true },
     execute: async () => {
@@ -189,24 +181,24 @@ function registerWebMCP() {
       return {
         totalIntents: seededIntents.length + state.localIntents.length,
         categories: counts,
-        privacy: 'This snapshot is intentionally lossy. Use find_counterparties for richer agent-facing matching.'
+        privacy: 'The public snapshot is intentionally broad. Use find_counterparties for structured matching.'
       };
     }
   });
 
   mc.registerTool({
     name: 'submit_latent_intent',
-    title: 'Submit a private latent intent',
-    description: 'Store a private goal for this user in local browser storage. Use when the user wants to represent a real goal, constraint, or offer without publishing the full text publicly.',
+    title: 'Submit a private intent',
+    description: 'Store a private request for this user in local browser storage without publishing the full text publicly.',
     inputSchema: {
       type: 'object',
       properties: {
-        goal: { type: 'string', description: 'The private goal or need in the user’s own words.' },
-        category: { type: 'string', enum: ['founder', 'research', 'capital', 'work', 'health', 'creative', 'other'] },
+        goal: { type: 'string', description: 'What the user wants or can offer.' },
+        category: { type: 'string', enum: ['housing', 'services', 'learning', 'events', 'commerce', 'community', 'other'] },
         region: { type: 'string', description: 'Optional geographic preference or constraint.' },
-        publicSignal: { type: 'string', description: 'Optional vague teaser that is safe to show publicly.' },
+        publicSignal: { type: 'string', description: 'Optional broad teaser that is safe to show publicly.' },
         mustHaves: { type: 'array', items: { type: 'string' }, description: 'Requirements for a useful match.' },
-        canOffer: { type: 'array', items: { type: 'string' }, description: 'What the user can offer in return.' }
+        canOffer: { type: 'array', items: { type: 'string' }, description: 'What the user can offer in return, if relevant.' }
       },
       required: ['goal', 'category']
     },
@@ -221,19 +213,19 @@ function registerWebMCP() {
         id,
         status: 'stored privately on this device',
         publicSignal: input.publicSignal || null,
-        next: 'Use find_counterparties next. Do not reveal the private goal to counterparties.'
+        next: 'Call find_counterparties next. Keep private details out of public-facing text.'
       };
     }
   });
 
   mc.registerTool({
     name: 'find_counterparties',
-    title: 'Find complementary people',
-    description: 'Read-only tool. Searches the latent market for complementary goals and offers, then returns opaque IDs, public-safe signals, and short rationales without exposing identities or private text.',
+    title: 'Find complementary matches',
+    description: 'Read-only. Searches private intent for complementary needs and offers, then returns opaque IDs, public-safe signals, and match rationales without exposing identities or raw private text.',
     inputSchema: {
       type: 'object',
       properties: {
-        query: { type: 'string', description: 'What the user wants to accomplish and the kind of counterparty that would help.' },
+        query: { type: 'string', description: 'What the user is trying to accomplish and what kind of match would help.' },
         category: { type: 'string', description: 'Optional category filter.' },
         region: { type: 'string', description: 'Optional location preference.' },
         maxResults: { type: 'integer', minimum: 1, maximum: 6, default: 3 }
@@ -260,7 +252,7 @@ function registerWebMCP() {
       logCall('find_counterparties', `${ranked.length} matches`);
       return {
         matches: ranked,
-        next: 'If the user chooses one, call request_intro with the opaque matchId and a short safe-to-share note.'
+        next: 'If the user wants one, call request_intro with the opaque matchId and a short note that is safe to share.'
       };
     }
   });
@@ -268,7 +260,7 @@ function registerWebMCP() {
   mc.registerTool({
     name: 'request_intro',
     title: 'Request a mutual-consent introduction',
-    description: 'Sensitive action. Sends a consent-gated intro request to an opaque match. The note should contain only information the user explicitly approves for sharing.',
+    description: 'Sensitive action. Creates a consent-gated introduction request to an opaque match. The note must contain only information the user approves for sharing.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -291,7 +283,7 @@ function registerWebMCP() {
         requestId,
         status: 'pending mutual consent',
         revealed: false,
-        message: 'No identity or private goal was disclosed. In a production network, both sides would approve before contact details are exchanged.'
+        message: 'No identity or private request was disclosed. A production network would exchange contact details only after both sides approve.'
       };
     }
   });
