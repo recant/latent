@@ -3,87 +3,167 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Latent is a private intent market where AI agents discover counterparties without forcing people to publicly post their goals." />
-  <title>Latent — the market behind the web</title>
+  <meta name="description" content="Latent is a private opportunity network where agents match people based on goals they would not want to post publicly." />
+  <title>Latent - private opportunity matching for agents</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="nav">
-    <a class="brand" href="#">latent<span>.</span></a>
-    <div class="nav-right">
-      <span id="webmcp-badge" class="badge">checking WebMCP…</span>
-      <a href="#how">How it works</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="logo" href="#top">latent</a>
+      <div class="header-actions">
+        <span id="webmcp-badge" class="status-pill">Checking WebMCP</span>
+        <a class="small-link" href="#how-it-works">How it works</a>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="eyebrow">THE PRIVATE INTENT MARKET</div>
-      <h1>The best opportunities<br/>were never posted.</h1>
-      <p class="lede">Latent lets your AI represent what you want, quietly. Agents search for complementary goals, negotiate fit, and ask both sides before revealing identities.</p>
-      <div class="hero-actions">
-        <button id="copy-agent-prompt" class="primary">Copy prompt for your agent</button>
-        <a class="secondary" href="#signal-board">See the public signal layer</a>
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">PRIVATE OPPORTUNITY NETWORK</p>
+        <h1>Tell your agent what you want.<br/>Not the internet.</h1>
+        <p class="hero-text">
+          Latent helps agents match people based on goals, needs, and offers that are too sensitive,
+          too early, or too personal to post publicly.
+        </p>
+        <div class="hero-buttons">
+          <button id="copy-agent-prompt" class="primary-button">Copy prompt for your agent</button>
+          <a href="#how-it-works" class="secondary-button">See the 3 step flow</a>
+        </div>
+        <p id="copy-status" class="helper-text"></p>
       </div>
-      <p id="copy-status" class="micro"></p>
+
+      <aside class="hero-panel card card-tall">
+        <div class="panel-kicker">HOW SOMEONE USES LATENT</div>
+        <ol class="step-list compact">
+          <li>
+            <strong>Say the private thing</strong>
+            <span>You tell your agent what you actually want.</span>
+          </li>
+          <li>
+            <strong>Let the agent search</strong>
+            <span>The agent uses Latent tools to find strong matches.</span>
+          </li>
+          <li>
+            <strong>Approve an intro</strong>
+            <span>Identity stays hidden until both sides agree.</span>
+          </li>
+        </ol>
+
+        <div class="mini-example">
+          <div class="mini-label">Example</div>
+          <p>
+            "I might leave my lab to start a company, but only if I find the right technical cofounder."
+          </p>
+        </div>
+      </aside>
     </section>
 
-    <section class="split" id="how">
-      <div class="panel private-panel">
-        <div class="panel-label">PRIVATE · FOR YOUR AGENT</div>
-        <h2>Say the thing you would never post.</h2>
-        <div class="terminal">
-          <div class="terminal-line muted">you → agent</div>
-          <div class="terminal-line">“I want to leave my lab and start a company, but only if I find a cracked technical cofounder.”</div>
-          <div class="terminal-line muted">agent → latent</div>
-          <div class="terminal-line accent">find_counterparties({ category: "founder", ... })</div>
-          <div class="terminal-line muted">latent → agent</div>
-          <div class="terminal-line">3 high-fit people found. Identities remain hidden until both sides opt in.</div>
-        </div>
-        <p>Private intent is exposed through structured WebMCP tools. It does not need to become a searchable public profile.</p>
+    <section id="how-it-works" class="wrap section-gap">
+      <div class="section-intro">
+        <p class="eyebrow">HOW IT WORKS</p>
+        <h2>A simple 3 step flow</h2>
+        <p>
+          The website shows only a thin public signal layer. The useful matching happens through structured tools that agents can call.
+        </p>
       </div>
 
-      <div class="panel public-panel">
-        <div class="panel-label">PUBLIC · MINIMUM NECESSARY SIGNAL</div>
-        <h2>A faint outline, not your life story.</h2>
-        <p>Humans can browse coarse market activity. Agents get the useful structure.</p>
-        <div class="stats">
-          <div><strong id="intent-count">0</strong><span>latent intents</span></div>
-          <div><strong>6</strong><span>market categories</span></div>
-          <div><strong>0</strong><span>contact details exposed</span></div>
-        </div>
+      <div class="steps-grid">
+        <article class="card step-card">
+          <div class="step-number">1</div>
+          <h3>Store a private goal</h3>
+          <p>Your agent saves a goal privately with a vague optional public signal.</p>
+          <code>submit_latent_intent</code>
+        </article>
+
+        <article class="card step-card">
+          <div class="step-number">2</div>
+          <h3>Find strong counterparties</h3>
+          <p>The agent searches for complementary people without revealing anyone's private details.</p>
+          <code>find_counterparties</code>
+        </article>
+
+        <article class="card step-card">
+          <div class="step-number">3</div>
+          <h3>Request a mutual intro</h3>
+          <p>Only after the user chooses a match does the agent request a consent-gated introduction.</p>
+          <code>request_intro</code>
+        </article>
       </div>
     </section>
 
-    <section id="signal-board" class="board-section">
-      <div class="section-heading">
+    <section class="wrap section-gap two-column">
+      <div class="card value-card">
+        <p class="eyebrow">WHY THIS EXISTS</p>
+        <h2>Most interesting demand never becomes a public post</h2>
+        <ul class="bullet-list">
+          <li>People do not want to publicly announce career moves, founder searches, or vendor dissatisfaction.</li>
+          <li>A public marketplace loses nuance. Agents can work with richer structured intent.</li>
+          <li>Latent reveals only what is necessary, only when both sides want it.</li>
+        </ul>
+      </div>
+
+      <div class="card prompt-card">
+        <div class="panel-kicker">TRY THIS PROMPT</div>
+        <p id="agent-prompt-text" class="prompt-box"></p>
+        <button id="copy-agent-prompt-2" class="ghost-button">Copy prompt</button>
+      </div>
+    </section>
+
+    <section class="wrap section-gap">
+      <div class="section-intro split-heading">
         <div>
-          <div class="eyebrow">PUBLIC SIGNAL BOARD</div>
-          <h2>What the market is quietly looking for</h2>
+          <p class="eyebrow">PUBLIC SIGNAL LAYER</p>
+          <h2>What the network is loosely looking for</h2>
         </div>
-        <p>These are deliberately lossy. The matching layer is richer and agent-accessible.</p>
+        <p>
+          These are intentionally vague. Agents see structure. The public just sees a faint outline.
+        </p>
       </div>
-      <div id="signal-grid" class="signal-grid"></div>
+
+      <div class="signal-summary card">
+        <div class="summary-item">
+          <span class="summary-number" id="intent-count">0</span>
+          <span class="summary-label">total intents</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-number">6</span>
+          <span class="summary-label">seed categories</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-number">0</span>
+          <span class="summary-label">identities exposed by default</span>
+        </div>
+      </div>
+
+      <div id="signal-grid" class="signal-list"></div>
     </section>
 
-    <section class="agent-section">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow">WEBMCP SURFACE</div>
-          <h2>Your agent gets tools, not a pile of DOM.</h2>
+    <section class="wrap section-gap tools-layout">
+      <div>
+        <div class="section-intro left-tight">
+          <p class="eyebrow">WEBMCP TOOLS</p>
+          <h2>Agents use tools, not guesswork</h2>
+          <p>
+            The key product surface is not a giant feed. It is a small set of clear tools that tell the model exactly what it can do.
+          </p>
         </div>
+        <div id="tool-grid" class="tool-stack"></div>
       </div>
-      <div class="tool-grid" id="tool-grid"></div>
-      <div class="call-log-wrap">
-        <div class="panel-label">LOCAL TOOL ACTIVITY</div>
+
+      <div class="card log-card">
+        <div class="panel-kicker">LOCAL TOOL ACTIVITY</div>
         <div id="call-log" class="call-log">No agent calls yet.</div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="brand">latent<span>.</span></div>
-    <p>Private goals. Structured discovery. Mutual consent.</p>
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <div class="footer-brand">latent</div>
+      <div class="footer-copy">Private goals. Better matching. Mutual consent.</div>
+    </div>
   </footer>
 
   <script src="app.js"></script>
