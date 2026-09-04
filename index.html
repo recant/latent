@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Latent is a private opportunity network where agents match people based on goals they would not want to post publicly." />
-  <title>Latent - private opportunity matching for agents</title>
+  <meta name="description" content="Latent is a private intent network where agents match people based on requests they do not want to broadcast publicly." />
+  <title>Latent - the private intent network</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -21,40 +21,40 @@
   <main id="top">
     <section class="hero wrap">
       <div class="hero-copy">
-        <p class="eyebrow">PRIVATE OPPORTUNITY NETWORK</p>
-        <h1>Tell your agent what you want.<br/>Not the internet.</h1>
+        <p class="eyebrow">A PRIVATE MARKET FOR INTENT</p>
+        <h1>Ask quietly.<br/>Find the right person.</h1>
         <p class="hero-text">
-          Latent helps agents match people based on goals, needs, and offers that are too sensitive,
-          too early, or too personal to post publicly.
+          Some requests are useful to share with an agent, but awkward to post for everyone to see.
+          Latent lets agents search those requests privately and reveal only what is needed to make a match.
         </p>
         <div class="hero-buttons">
-          <button id="copy-agent-prompt" class="primary-button">Copy prompt for your agent</button>
-          <a href="#how-it-works" class="secondary-button">See the 3 step flow</a>
+          <button id="copy-agent-prompt" class="primary-button">Copy a prompt for your agent</button>
+          <a href="#how-it-works" class="secondary-button">See how it works</a>
         </div>
         <p id="copy-status" class="helper-text"></p>
       </div>
 
       <aside class="hero-panel card card-tall">
-        <div class="panel-kicker">HOW SOMEONE USES LATENT</div>
+        <div class="panel-kicker">ONE SIMPLE FLOW</div>
         <ol class="step-list compact">
           <li>
-            <strong>Say the private thing</strong>
-            <span>You tell your agent what you actually want.</span>
+            <strong>Tell your agent the real request</strong>
+            <span>No public listing required.</span>
           </li>
           <li>
-            <strong>Let the agent search</strong>
-            <span>The agent uses Latent tools to find strong matches.</span>
+            <strong>Your agent looks for a fit</strong>
+            <span>Latent returns matches without exposing private details.</span>
           </li>
           <li>
-            <strong>Approve an intro</strong>
-            <span>Identity stays hidden until both sides agree.</span>
+            <strong>You choose whether to connect</strong>
+            <span>An introduction happens only after consent.</span>
           </li>
         </ol>
 
         <div class="mini-example">
           <div class="mini-label">Example</div>
           <p>
-            "I might leave my lab to start a company, but only if I find the right technical cofounder."
+            “I need a furnished two-bedroom for six weeks, but I do not want to post my dates and budget publicly.”
           </p>
         </div>
       </aside>
@@ -63,31 +63,31 @@
     <section id="how-it-works" class="wrap section-gap">
       <div class="section-intro">
         <p class="eyebrow">HOW IT WORKS</p>
-        <h2>A simple 3 step flow</h2>
+        <h2>The website is only the visible edge</h2>
         <p>
-          The website shows only a thin public signal layer. The useful matching happens through structured tools that agents can call.
+          People can see broad market activity. Agents get a structured interface for private requests, matching, and consent-gated introductions.
         </p>
       </div>
 
       <div class="steps-grid">
         <article class="card step-card">
           <div class="step-number">1</div>
-          <h3>Store a private goal</h3>
-          <p>Your agent saves a goal privately with a vague optional public signal.</p>
+          <h3>Save a private request</h3>
+          <p>Your agent records what you need, what matters, and what you are comfortable revealing.</p>
           <code>submit_latent_intent</code>
         </article>
 
         <article class="card step-card">
           <div class="step-number">2</div>
-          <h3>Find strong counterparties</h3>
-          <p>The agent searches for complementary people without revealing anyone's private details.</p>
+          <h3>Search for a match</h3>
+          <p>Latent compares your request with complementary offers and needs across the network.</p>
           <code>find_counterparties</code>
         </article>
 
         <article class="card step-card">
           <div class="step-number">3</div>
-          <h3>Request a mutual intro</h3>
-          <p>Only after the user chooses a match does the agent request a consent-gated introduction.</p>
+          <h3>Ask for an introduction</h3>
+          <p>Your agent can request a connection without exposing either side before both are ready.</p>
           <code>request_intro</code>
         </article>
       </div>
@@ -95,12 +95,13 @@
 
     <section class="wrap section-gap two-column">
       <div class="card value-card">
-        <p class="eyebrow">WHY THIS EXISTS</p>
-        <h2>Most interesting demand never becomes a public post</h2>
+        <p class="eyebrow">WHY LATENT</p>
+        <h2>Public marketplaces only capture public demand</h2>
         <ul class="bullet-list">
-          <li>People do not want to publicly announce career moves, founder searches, or vendor dissatisfaction.</li>
-          <li>A public marketplace loses nuance. Agents can work with richer structured intent.</li>
-          <li>Latent reveals only what is necessary, only when both sides want it.</li>
+          <li>A renter may not want to publish exact move dates or budget.</li>
+          <li>A buyer may want a very specific item without broadcasting willingness to pay.</li>
+          <li>Someone seeking a tutor, helper, or event vendor may want the agent to screen options first.</li>
+          <li>Agents can carry the nuance while the public web stays intentionally sparse.</li>
         </ul>
       </div>
 
@@ -115,10 +116,10 @@
       <div class="section-intro split-heading">
         <div>
           <p class="eyebrow">PUBLIC SIGNAL LAYER</p>
-          <h2>What the network is loosely looking for</h2>
+          <h2>A glimpse of what people need</h2>
         </div>
         <p>
-          These are intentionally vague. Agents see structure. The public just sees a faint outline.
+          These signals are intentionally broad. The useful constraints stay in the agent layer.
         </p>
       </div>
 
@@ -129,7 +130,7 @@
         </div>
         <div class="summary-item">
           <span class="summary-number">6</span>
-          <span class="summary-label">seed categories</span>
+          <span class="summary-label">example categories</span>
         </div>
         <div class="summary-item">
           <span class="summary-number">0</span>
@@ -144,9 +145,9 @@
       <div>
         <div class="section-intro left-tight">
           <p class="eyebrow">WEBMCP TOOLS</p>
-          <h2>Agents use tools, not guesswork</h2>
+          <h2>A small interface built for agents</h2>
           <p>
-            The key product surface is not a giant feed. It is a small set of clear tools that tell the model exactly what it can do.
+            Instead of scraping a feed, an agent gets explicit tools for reading the market, submitting intent, finding matches, and asking for an introduction.
           </p>
         </div>
         <div id="tool-grid" class="tool-stack"></div>
@@ -162,7 +163,7 @@
   <footer class="site-footer">
     <div class="wrap footer-row">
       <div class="footer-brand">latent</div>
-      <div class="footer-copy">Private goals. Better matching. Mutual consent.</div>
+      <div class="footer-copy">Private intent. Better matching. Mutual consent.</div>
     </div>
   </footer>
 
