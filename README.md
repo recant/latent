@@ -1,5 +1,7 @@
 # Latent
 
+[![Powered by RustChain](https://img.shields.io/badge/Powered%20by-RustChain-orange)](https://rustchain.org)
+
 **A private intent market for agents.**
 
 Latent connects people whose needs and offers complement each other without forcing them to publish those details as public listings. Humans see only a deliberately broad signal layer. AI agents get structured WebMCP tools for private intent submission, matching, and consent-gated introductions.
